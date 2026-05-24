@@ -1,0 +1,140 @@
+@import "tailwindcss";
+@import "katex/dist/katex.min.css";
+
+.math-inline-nowrap,
+.math-inline-nowrap .katex,
+.math-inline-nowrap .katex-html,
+.math-inline-nowrap .base {
+  white-space: nowrap !important;
+}
+
+.math-inline-nowrap {
+  max-width: 100%;
+  overflow: visible;
+}
+
+.drawer-math-nowrap,
+.drawer-math-nowrap .katex,
+.drawer-math-nowrap .katex-html,
+.drawer-math-nowrap .base {
+  white-space: nowrap !important;
+}
+
+.drawer-math-nowrap {
+  display: inline-block;
+  min-width: max-content;
+}
+
+.drawer-math-box {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Hide scrollbar/buttons on Webkit (Chrome, Safari, Edge, Opera) */
+.drawer-math-box::-webkit-scrollbar,
+.drawer-math-box *::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.drawer-math-box,
+.drawer-math-box * {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+}
+
+.drawer-math-box-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-gutter: stable;
+}
+
+.drawer-math-display {
+  margin: 0 !important;
+  min-width: max-content;
+  white-space: nowrap !important;
+}
+
+.drawer-math-display .katex-display {
+  margin: 0 !important;
+  overflow: visible !important;
+  text-align: left !important;
+}
+
+.drawer-math-display .katex,
+.drawer-math-display .katex-html,
+.drawer-math-display .base {
+  white-space: nowrap !important;
+}
+
+.step5-hero-formula {
+  min-width: max-content;
+}
+
+.step5-hero-formula .katex-display {
+  margin: 0 !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+}
+
+.step5-hero-formula .katex,
+.step5-hero-formula .katex-html,
+.step5-hero-formula .base {
+  white-space: nowrap !important;
+}
+
+.track-formula {
+  display: block;
+  white-space: nowrap;
+  line-height: 1.2;
+  font-style: italic;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.step-title-formula-badge {
+  display: inline-block;
+  white-space: nowrap;
+  font-style: italic;
+  line-height: 1;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.math-unicode-nowrap {
+  white-space: nowrap;
+  display: inline-block;
+  font-style: italic;
+  line-height: 1.2;
+  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+.coordinate-card-math-box {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.coordinate-card-math-box .katex-display {
+  margin: 0 !important;
+  text-align: left !important;
+}
+
+.step3-row-label-math,
+.step3-row-label-math .katex,
+.step3-row-label-math .katex-html,
+.step3-row-label-math .base {
+  white-space: nowrap !important;
+}
+
+.step3-row-label-math {
+  display: inline-block;
+  max-width: 100%;
+  line-height: 1.2;
+}
+
+

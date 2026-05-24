@@ -1,0 +1,6 @@
+{
+  "name": "Frame Extraction and Windowing Lab",
+  "description": "An interactive, mathematically exact educational lab for learning discrete-time frame extraction, sample windowing, and coordinate mapping.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
