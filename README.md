@@ -22,11 +22,12 @@ It is not a production DSP library.
 
 ---
 
+
 ## Live Demo
 
 Use the live app here:
 
-[Open the live app](https://ais-pre-crtl34r6z5mcftre2okjug-145863851003.europe-west2.run.app)
+[Open the live app](https://frame-extraction-and-windowing-lab-771380545839.europe-west2.run.app/)
 
 ---
 
