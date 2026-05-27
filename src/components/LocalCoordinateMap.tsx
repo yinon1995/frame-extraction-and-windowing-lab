@@ -187,12 +187,12 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                             Selected
                           </span>
                           <span className="text-[13px] text-blue-900 font-black block leading-none">
-                            <InlineMath math={`\\ell = ${l}`} />
+                            <InlineMath math={String.raw`\ell = ${l}`} />
                           </span>
                         </>
                       ) : (
                         <span className="text-[12px] text-slate-500 font-bold block leading-none">
-                          <InlineMath math={`\\ell = ${l}`} />
+                          <InlineMath math={String.raw`\ell = ${l}`} />
                         </span>
                       )}
                     </div>
@@ -208,7 +208,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                 <div className="flex flex-col">
                   <span className="text-slate-800 text-[13px] font-bold">Local offset</span>
                   <div className="mt-0.5 text-blue-700 text-xs flex items-center gap-1 font-semibold font-mono">
-                    <InlineMath math="\\ell" />
+                    <InlineMath math={String.raw`\ell`} />
                     <span className="text-[10px] font-normal text-slate-400 font-sans">coordinate</span>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                     }`}
                   >
                     <span className="font-mono text-sm font-semibold">
-                      <InlineMath math={`\\ell = ${l}`} />
+                      <InlineMath math={String.raw`\ell = ${l}`} />
                     </span>
                   </td>
                 );
@@ -256,7 +256,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                 <div className="flex flex-col">
                   <span className="text-slate-800 text-[13px] font-bold">Global index</span>
                   <div className="mt-0.5 text-indigo-700 text-xs flex items-center gap-1 font-semibold font-mono">
-                    <InlineMath math="g = mH + \\ell" />
+                    <InlineMath math={String.raw`g = mH + \ell`} />
                   </div>
                 </div>
               </td>
@@ -294,10 +294,10 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                       {isSelected ? (
                         <div className="flex flex-col items-center space-y-1">
                           <span className="text-[9px] text-slate-400 font-normal leading-none font-sans">
-                            <InlineMath math={`g = mH + \\ell`} />
+                            <InlineMath math={String.raw`g = mH + \ell`} />
                           </span>
                           <span className="font-bold text-indigo-705 leading-none text-xs">
-                            <InlineMath math={`g = ${selectedFrameM} \\cdot ${H} + ${l} = ${absG}`} />
+                            <InlineMath math={String.raw`g = ${selectedFrameM} \cdot ${H} + ${l} = ${absG}`} />
                           </span>
                         </div>
                       ) : (
@@ -318,7 +318,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                   <span className="text-slate-800 text-[13px] font-bold">Signal value</span>
                   <div className="mt-0.5 text-amber-700 text-xs font-bold">
                     <InlineMath
-                      math="x^{(m)}[\\ell] = x[g]"
+                      math={String.raw`x^{(m)}[\ell] = x[g]`}
                       className="step3-row-label-math"
                     />
                   </div>
@@ -552,12 +552,14 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
           <span className="text-[10px] font-bold text-slate-400 tracking-wider uppercase block font-sans">
             Active Frame Vector
           </span>
-          <div className="text-sm font-semibold text-slate-800 py-0.5 select-none pointer-events-none">
-            <InlineMath math={`\\mathbf{x}^{(${selectedFrameM})} =`} />
-          </div>
         </div>
 
         <div className="flex items-center justify-center gap-2 py-1.5 w-full">
+          {/* Equation and vector rendered as one aligned math row */}
+          <div className="text-sm font-semibold text-slate-800 select-none pointer-events-none">
+            <InlineMath math={String.raw`\mathbf{x}^{(${selectedFrameM})} =`} />
+          </div>
+
           {/* Matrix Left Bracket */}
           <div className="w-2.5 h-32 border-y border-l border-slate-700 rounded-l"></div>
 

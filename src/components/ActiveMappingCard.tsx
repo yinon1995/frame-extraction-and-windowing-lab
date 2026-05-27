@@ -74,14 +74,14 @@ export const ActiveMappingCard: React.FC<ActiveMappingCardProps> = ({ labState }
 
         <DrawerMathRow
           label="Global Index"
-          formula={"g=mH+\\ell"}
-          value={`g=${m}\\cdot${H}+${ell}=${g}`}
+          formula={String.raw`g=mH+\ell`}
+          value={String.raw`g=${m}\cdot${H}+${ell}=${g}`}
         />
 
         <DrawerMathRow
           label="Discrete Sample Value"
-          formula={"x^{(m)}[\\ell]=x[g]"}
-          value={`x^{(${m})}[${ell}]=x[${g}]=${val.toFixed(4)}`}
+          formula={String.raw`x^{(m)}[\ell]=x[g]`}
+          value={String.raw`x^{(${m})}[${ell}]=x[${g}]=${val.toFixed(4)}`}
         />
 
         <DrawerMathRow
