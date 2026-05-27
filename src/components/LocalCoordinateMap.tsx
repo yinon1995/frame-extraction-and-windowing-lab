@@ -208,7 +208,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                 <div className="flex flex-col">
                   <span className="text-slate-800 text-[13px] font-bold">Local offset</span>
                   <div className="mt-0.5 text-blue-700 text-xs flex items-center gap-1 font-semibold font-mono">
-                    <InlineMath math="\ell" />
+                    <InlineMath math="\\ell" />
                     <span className="text-[10px] font-normal text-slate-400 font-sans">coordinate</span>
                   </div>
                 </div>
@@ -256,7 +256,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                 <div className="flex flex-col">
                   <span className="text-slate-800 text-[13px] font-bold">Global index</span>
                   <div className="mt-0.5 text-indigo-700 text-xs flex items-center gap-1 font-semibold font-mono">
-                    <InlineMath math="g = mH + \ell" />
+                    <InlineMath math="g = mH + \\ell" />
                   </div>
                 </div>
               </td>
@@ -318,7 +318,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
                   <span className="text-slate-800 text-[13px] font-bold">Signal value</span>
                   <div className="mt-0.5 text-amber-700 text-xs font-bold">
                     <InlineMath
-                      math="x^{(m)}[\ell] = x[g]"
+                      math="x^{(m)}[\\ell] = x[g]"
                       className="step3-row-label-math"
                     />
                   </div>
@@ -627,7 +627,7 @@ export const LocalCoordinateMap: React.FC<LocalCoordinateMapProps> = ({
 
       <div className="space-y-4">
         <p className="text-xs text-slate-600 font-sans leading-relaxed">
-          Select any column index in the grid below to pivot the focus coordinate mapping <InlineMath math="\ell" />, realigning math readouts live:
+          Select any column index in the grid below to pivot the focus coordinate mapping <InlineMath math="\\ell" />, realigning math readouts live:
         </p>
 
         {/* Embed-sized grid layout - Table gets 3/4 width on large screens to prevent squeezed labels / overlap */}

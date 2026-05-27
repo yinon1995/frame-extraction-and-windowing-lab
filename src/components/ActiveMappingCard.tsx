@@ -86,8 +86,8 @@ export const ActiveMappingCard: React.FC<ActiveMappingCardProps> = ({ labState }
 
         <DrawerMathRow
           label="Continuous Time"
-          formula={"t_g=g/f_s"}
-          value={`t_{${g}}=${g}/${fs}=${(g / fs).toFixed(3)}\\,\\mathrm{s}`}
+          formula={"t_g=\\frac{g}{f_s}"}
+          value={`t_{${g}}=\\frac{${g}}{${fs}}=${(g / fs).toFixed(3)}\\,\\mathrm{s}`}
         />
       </div>
     </div>

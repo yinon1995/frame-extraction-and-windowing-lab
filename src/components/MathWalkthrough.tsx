@@ -52,12 +52,12 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
     const maxShow = 3;
     const items = [];
     for (let i = 0; i < Math.min(M, maxShow); i++) {
-      items.push(`s_${i} = ${i * H}`);
+      items.push(String.raw`s_${i} = ${i * H}`);
     }
     if (M > maxShow) {
-      items.push('\\dots');
+      items.push(String.raw`\dots`);
     }
-    return items.join(',\\ ');
+    return items.join(String.raw`,\ `);
   };
 
   const toggleAccordion = (id: string) => {
@@ -105,28 +105,28 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
           <div className="pt-6 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">1</span>
-              <span>What is the signal <InlineMath math="x[g]" />?</span>
+              <span>What is the signal <InlineMath math={String.raw`x[g]`} />?</span>
             </h4>
-            <div className="text-xs text-slate-650 space-y-2 font-sans leading-relaxed">
+            <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
-                <InlineMath math="x[g]" /> represents the discrete-time sampled sequence of values.
+                <InlineMath math={String.raw`x[g]`} /> represents the discrete-time sampled sequence of values.
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li><InlineMath math="g" /> is the <strong>global sample index</strong>, representing the chronological index in the complete sequence.</li>
-                <li>The physical sample index ranges boundedly as: <InlineMath math="g \in \{0, 1, \ldots, N-1\}" />.</li>
-                <li>The value <InlineMath math="x[g]" /> represents the physical amplitude sample measured at that global index.</li>
+                <li><InlineMath math={String.raw`g`} /> is the <strong>global sample index</strong>, representing the chronological index in the complete sequence.</li>
+                <li>The physical sample index ranges boundedly as: <InlineMath math={String.raw`g \in \{0, 1, \dots, N-1\}`} />.</li>
+                <li>The value <InlineMath math={String.raw`x[g]`} /> represents the physical amplitude sample measured at that global index.</li>
               </ul>
               <div className="p-3.5 bg-slate-50 border border-slate-150 rounded-xl space-y-1 mt-2">
                 <p className="font-semibold text-slate-700 mb-1">Current State Substitution:</p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 font-mono text-[11px]">
                   <div className="bg-white rounded p-1.5 border border-slate-100 text-center">
-                    Total count: <InlineMath math={`N = ${N}`} />
+                    Total count: <InlineMath math={String.raw`N = ${N}`} />
                   </div>
                   <div className="bg-white rounded p-1.5 border border-slate-100 text-center">
-                    Selected <InlineMath math={`g_{\\text{selected}} = ${selectedGlobalIndex}`} />
+                    Selected <InlineMath math={String.raw`g_{\text{selected}} = ${selectedGlobalIndex}`} />
                   </div>
                   <div className="bg-white rounded p-1.5 border border-slate-150 border-l-3 border-l-blue-500 text-center font-bold">
-                    Value <InlineMath math={`x[${selectedGlobalIndex}] = ${selectedSampleValue.toFixed(4)}`} />
+                    Value <InlineMath math={String.raw`x[${selectedGlobalIndex}] = ${selectedSampleValue.toFixed(4)}`} />
                   </div>
                 </div>
               </div>
@@ -139,24 +139,24 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">2</span>
               <span>What does the highlighted region mean?</span>
             </h4>
-            <div className="text-xs text-slate-650 space-y-2 font-sans leading-relaxed">
+            <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
                 The blue highlighted block in the main timeline represents the current active <strong>frame interval</strong>.
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>The frame index <InlineMath math="m" /> does <strong>not</strong> point to an isolated single point.</li>
-                <li>Instead, <InlineMath math="m" /> selects an contiguous block interval containing exactly <InlineMath math="L" /> consecutive samples.</li>
-                <li>The frame starting boundary <InlineMath math="s_m" /> shifts forward proportionally with hop interval <InlineMath math="H" />:</li>
+                <li>The frame index <InlineMath math={String.raw`m`} /> does <strong>not</strong> point to an isolated single point.</li>
+                <li>Instead, <InlineMath math={String.raw`m`} /> selects an contiguous block interval containing exactly <InlineMath math={String.raw`L`} /> consecutive samples.</li>
+                <li>The frame starting boundary <InlineMath math={String.raw`s_m`} /> shifts forward proportionally with hop interval <InlineMath math={String.raw`H`} />:</li>
               </ul>
-              <MathBlock math="s_m = m \cdot H" />
+              <MathBlock math={String.raw`s_m = m \cdot H`} />
               <p>Substituting current values:</p>
-              <MathBlock math={`s_{${selectedFrameM}} = ${selectedFrameM} \\cdot ${H} = ${startIdx}`} />
+              <MathBlock math={String.raw`s_{${selectedFrameM}} = ${selectedFrameM} \cdot ${H} = ${startIdx}`} />
               <p>
-                The frame interval boundaries <InlineMath math="I_m" /> contain coordinates:
+                The frame interval boundaries <InlineMath math={String.raw`I_m`} /> contain coordinates:
               </p>
-              <MathBlock math="I_m = \{s_m, s_m+1, \ldots, s_m+L-1\}" />
+              <MathBlock math={String.raw`I_m = \{s_m, s_m+1, \dots, s_m+L-1\}`} />
               <p>Substituting current indices:</p>
-              <MathBlock math={`I_{${selectedFrameM}} = \\{${startIdx}, ${startIdx + 1}, \\ldots, ${endIdxExcl - 1}\\}$`} />
+              <MathBlock math={String.raw`I_{${selectedFrameM}} = \{${startIdx}, ${startIdx + 1}, \dots, ${endIdxExcl - 1}\}`} />
             </div>
           </div>
 
@@ -164,20 +164,20 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
           <div className="pt-6 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">3</span>
-              <span>What is <InlineMath math="L" />?</span>
+              <span>What is <InlineMath math={String.raw`L`} />?</span>
             </h4>
-            <div className="text-xs text-slate-650 space-y-2 font-sans leading-relaxed">
+            <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
-                <InlineMath math="L" /> is the <strong>frame length</strong> (in samples).
+                <InlineMath math={String.raw`L`} /> is the <strong>frame length</strong> (in samples).
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>It acts as an aperture or window length, selecting exactly <InlineMath math="L" /> global samples.</li>
-                <li>By itself, <InlineMath math="L" /> represents discrete sample values and does not dictate duration until the physical sampling rate <InlineMath math="f_s" /> is factored.</li>
+                <li>It acts as an aperture or window length, selecting exactly <InlineMath math={String.raw`L`} /> global samples.</li>
+                <li>By itself, <InlineMath math={String.raw`L`} /> represents discrete sample values and does not dictate duration until the physical sampling rate <InlineMath math={String.raw`f_s`} /> is factored.</li>
               </ul>
               <div className="p-3 bg-slate-50 border border-slate-150 rounded-xl font-sans">
-                <span className="font-semibold">Current framing Length:</span> <InlineMath math={`L = ${L}`} />.
+                <span className="font-semibold">Current framing Length:</span> <InlineMath math={String.raw`L = ${L}`} />.
                 <p className="mt-1">
-                  Because the current frame is <InlineMath math={`I_{${selectedFrameM}} = \\{${frameIndicesList.join(', ')}\\}`} />, the windowed interval currently contains exactly <strong className="text-blue-700">{L} samples</strong>.
+                  Because the current frame is <InlineMath math={String.raw`I_{${selectedFrameM}} = \{${frameIndicesList.join(', ')}\}`} />, the windowed interval currently contains exactly <strong className="text-blue-700">{L} samples</strong>.
                 </p>
               </div>
             </div>
@@ -187,33 +187,33 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
           <div className="pt-6 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">4</span>
-              <span>What is <InlineMath math="H" />?</span>
+              <span>What is <InlineMath math={String.raw`H`} />?</span>
             </h4>
-            <div className="text-xs text-slate-650 space-y-2 font-sans leading-relaxed">
+            <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
-                <InlineMath math="H" /> is the <strong>hop interval</strong> (in samples).
+                <InlineMath math={String.raw`H`} /> is the <strong>hop interval</strong> (in samples).
               </p>
               <ul className="list-disc pl-5 space-y-2">
                 <li>It defines the shift translation stride for sliding consecutive frames.</li>
-                <li>Consecutive stride starts are located at: <InlineMath math={`\\{${renderConsecutiveStarts()}\\}`} />.</li>
+                <li>Consecutive stride starts are located at: <InlineMath math={String.raw`\{${renderConsecutiveStarts()}\}`} />.</li>
               </ul>
               <div className="p-3 bg-slate-50 border border-slate-150 rounded-xl space-y-1 font-sans">
                 <p>
-                  <span className="font-semibold">Current shift style:</span> <InlineMath math={`H = ${H}`} />.
+                  <span className="font-semibold">Current shift style:</span> <InlineMath math={String.raw`H = ${H}`} />.
                 </p>
                 {isNonOverlapping && (
                   <p className="text-blue-700 font-medium">
-                    <InlineMath math="H = L \Rightarrow" /> <strong>Non-overlapping frames.</strong> Each frame starts immediately where the previous block concludes, ensuring perfect adjacent alignment without redundancy.
+                    <InlineMath math={String.raw`H = L \Rightarrow`} /> <strong>Non-overlapping frames.</strong> Each frame starts immediately where the previous block concludes, ensuring perfect adjacent alignment without redundancy.
                   </p>
                 )}
                 {isOverlapping && (
                   <p className="text-purple-700 font-medium">
-                    <InlineMath math="H < L \Rightarrow" /> <strong>Overlapping frames.</strong> Consecutive blocks share a joint overlap subset of exactly <InlineMath math={`${L - H} \\text{ samples}`} />, introducing signal redundancy suitable for smooth spectral analysis.
+                    <InlineMath math={String.raw`H < L \Rightarrow`} /> <strong>Overlapping frames.</strong> Consecutive blocks share a joint overlap subset of exactly <InlineMath math={String.raw`${L - H} \text{ samples}`} />, introducing signal redundancy suitable for smooth spectral analysis.
                   </p>
                 )}
                 {isGapped && (
                   <p className="text-amber-700 font-medium">
-                    <InlineMath math="H > L \Rightarrow" /> <strong>Gaps between frames.</strong> Gapping leaves exactly <InlineMath math={`${H - L} \\text{ unread samples}`} /> between adjacent frames, omitting those sections completely.
+                    <InlineMath math={String.raw`H > L \Rightarrow`} /> <strong>Gaps between frames.</strong> Gapping leaves exactly <InlineMath math={String.raw`${H - L} \text{ unread samples}`} /> between adjacent frames, omitting those sections completely.
                   </p>
                 )}
               </div>
@@ -224,56 +224,57 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
           <div className="pt-6 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">5</span>
-              <span>What is the local index <InlineMath math="\\ell" />?</span>
+              <span>What is the local index <InlineMath math={String.raw`\ell`} />?</span>
             </h4>
             <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
-                <InlineMath math="\\ell" /> is the <strong>local within-frame index</strong>.
+                <InlineMath math={String.raw`\ell`} /> is the <strong>local within-frame index</strong>.
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>Unlike global indexes, local offset index always resets to zero for every single frame: <InlineMath math="\\ell \\in \\{0, 1, \\ldots, L-1\\}" />.</li>
-                <li>The linear coordinate affine equation that maps local coordinates back to absolute global coordinates is:</li>
+                <li>Unlike global indexes, local offset index always resets to zero for every single frame:</li>
               </ul>
-              <MathBlock math="g = m \\cdot H + \\ell" />
+              <MathBlock math={String.raw`\ell = 0,1,\dots,L-1`} />
+              <p>The linear coordinate affine equation that maps local coordinates back to absolute global coordinates is:</p>
+              <MathBlock math={String.raw`g = mH + \ell`} />
               <p>Substituting current view values:</p>
-              <MathBlock math={`g = ${selectedFrameM} \\cdot ${H} + ${selectedEll} = ${selectedGlobalIndex}`} />
+              <MathBlock math={String.raw`g = ${selectedFrameM} \cdot ${H} + ${selectedEll} = ${selectedGlobalIndex}`} />
               <p>The signal sequence indexed inside a localized frame buffer is denoted as:</p>
-              <MathBlock math="x^{(m)}[\\ell] = x[m \\cdot H + \\ell]" />
+              <MathBlock math={String.raw`x^{(m)}[\ell] = x[m \cdot H + \ell]`} />
               <p>Substituting for the selected offset:</p>
-              <MathBlock math={`x^{(${selectedFrameM})}[${selectedEll}] = x[${selectedGlobalIndex}]`} />
+              <MathBlock math={String.raw`x^{(${selectedFrameM})}[${selectedEll}] = x[${selectedGlobalIndex}]`} />
             </div>
           </div>
 
           {/* Section 6: What does fs do */}
           <div className="pt-6 space-y-3">
-            <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
-              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">6</span>
-              <span>What does <InlineMath math="f_s" /> do?</span>
+            <h4 className="text-xs font-bold text-slate-900 tracking-wide flex items-center gap-1.5 font-sans">
+              <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-705 font-bold">6</span>
+              <span>What does <InlineMath math={String.raw`f_s`} /> do?</span>
             </h4>
             <div className="text-xs text-slate-655 space-y-2 font-sans leading-relaxed">
               <p>
-                <InlineMath math="f_s" /> is the physical <strong>sampling frequency</strong> (sampling rate) in hertz.
+                <InlineMath math={String.raw`f_s`} /> is the sample rate in Hz.
               </p>
               <ul className="list-disc pl-5 space-y-1.5">
                 <li>It maps discrete index counts directly into physical continuous seconds of time.</li>
-                <li>The physical continuous time of sample <InlineMath math="g" /> is calculated via:</li>
+                <li>The physical continuous time of sample <InlineMath math={String.raw`g`} /> is calculated via:</li>
               </ul>
-              <MathBlock math="t_g = \frac{g}{f_s}" />
+              <MathBlock math={String.raw`t_g = \frac{g}{f_s}`} />
               <p>Substituting current selected sample details:</p>
-              <MathBlock math={`t_{${selectedGlobalIndex}} = \\frac{${selectedGlobalIndex}}{${fs}} = ${selectedSampleTime.toFixed(4)}\\text{ s}`} />
+              <MathBlock math={String.raw`t_{${selectedGlobalIndex}} = \frac{${selectedGlobalIndex}}{${fs}} = ${selectedSampleTime.toFixed(4)}\text{ s}`} />
               <p>
                 The complete observation duration of the entire sequence is:
               </p>
-              <MathBlock math={`T_{\\text{observed}} = \\frac{N}{f_s} = \\frac{${N}}{${fs}} = ${observedDuration.toFixed(4)}\\text{ s}`} />
+              <MathBlock math={String.raw`T_{\text{observed}} = \frac{N}{f_s} = \frac{${N}}{${fs}} = ${observedDuration.toFixed(4)}\text{ s}`} />
               
               <div className="p-3 bg-slate-50 border border-slate-150 rounded-xl space-y-2 font-sans mt-2">
                 {sampleCountMode === 'fixed_duration' ? (
                   <p className="text-purple-700 text-xs font-medium">
-                    <strong>Fixed Duration Mode is Active:</strong> You configured a physical limit <InlineMath math={`T_{\\text{total}} = ${T_total}\\text{ s}`} />. Therefore, changing <InlineMath math="f_s" /> recomputes the sample size: <InlineMath math={`N = \\lfloor T_{\\text{total}} \\cdot f_s \\rfloor = \\lfloor ${T_total} \\times ${fs} \\rfloor = ${N}`} />. Since duration is pinned, higher <InlineMath math="f_s" /> yields a visibly denser sample spacing.
+                    <strong>Fixed Duration Mode is Active:</strong> You configured a physical limit <InlineMath math={String.raw`T_{\text{total}} = ${T_total}\text{ s}`} />. Therefore, changing <InlineMath math={String.raw`f_s`} /> recomputes the sample size: <InlineMath math={String.raw`N = \lfloor T_{\text{total}} \cdot f_s \rfloor = \lfloor ${T_total} \times ${fs} \rfloor = ${N}`} />. Since duration is pinned, higher <InlineMath math={String.raw`f_s`} /> yields a visibly denser sample spacing.
                   </p>
                 ) : (
                   <p className="text-blue-700 text-xs font-medium">
-                    <strong>Fixed-N Mode is Active:</strong> The sample count is hard-pinned at <InlineMath math={`N = ${N}`} />. Changing <InlineMath math="f_s" /> adjusts temporal timestamps and the frequencies of deterministic continuous source waves, but doesn't change coordinate index graph density.
+                    <strong>Fixed-N Mode is Active:</strong> The sample count is hard-pinned at <InlineMath math={String.raw`N = ${N}`} />. Changing <InlineMath math={String.raw`f_s`} /> adjusts temporal timestamps and the frequencies of deterministic continuous source waves, but doesn't change coordinate index graph density.
                   </p>
                 )}
               </div>
@@ -289,28 +290,42 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="bg-blue-50/40 border border-blue-200/60 rounded-xl p-4 font-sans space-y-2">
                 <span className="text-[10px] uppercase tracking-wider font-bold text-blue-800">Dynamic UI Values</span>
-                <div className="space-y-1.5 text-xs">
-                  <div className="flex justify-between border-b border-blue-100 pb-1">
-                    <span className="text-slate-500 font-medium">m (Frame index):</span>
-                    <span className="font-mono font-bold text-slate-800">{selectedFrameM}</span>
-                  </div>
-                  <div className="flex justify-between border-b border-blue-100 pb-1">
+                <div className="space-y-2 text-xs">
+                  <div className="flex justify-between border-b border-blue-100 pb-1.5 items-center">
                     <span className="text-slate-500 font-medium flex items-center gap-1">
-                      <InlineMath math="\\ell" /> (Local relative offset):
+                      <InlineMath math={String.raw`m`} /> (Frame index):
                     </span>
-                    <span className="font-mono font-bold text-slate-800">{selectedEll}</span>
+                    <InlineMath math={String.raw`m = ${selectedFrameM}`} className="text-slate-800 font-bold" />
                   </div>
-                  <div className="flex justify-between border-b border-blue-100 pb-1">
-                    <span className="text-slate-500 font-medium">L (Frame length):</span>
-                    <span className="font-mono font-bold text-slate-800">{L} samples</span>
+                  <div className="flex justify-between border-b border-blue-100 pb-1.5 items-center">
+                    <span className="text-slate-500 font-medium flex items-center gap-1">
+                      <InlineMath math={String.raw`\ell`} /> (Local relative offset):
+                    </span>
+                    <InlineMath math={String.raw`\ell = ${selectedEll}`} className="text-slate-800 font-bold" />
                   </div>
-                  <div className="flex justify-between border-b border-blue-100 pb-1">
-                    <span className="text-slate-500 font-medium">H (Hop interval stride):</span>
-                    <span className="font-mono font-bold text-slate-800">{H} samples</span>
+                  <div className="flex justify-between border-b border-blue-100 pb-1.5 items-center">
+                    <span className="text-slate-500 font-medium flex items-center gap-1">
+                      <InlineMath math={String.raw`L`} /> (Frame length):
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <InlineMath math={String.raw`L = ${L}`} className="text-slate-800 font-bold" />
+                      <span className="text-slate-500 text-[11px]">samples</span>
+                    </span>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-slate-500 font-medium">f_s (Sampling rate):</span>
-                    <span className="font-mono font-bold text-slate-800">{fs} Hz</span>
+                  <div className="flex justify-between border-b border-blue-100 pb-1.5 items-center">
+                    <span className="text-slate-500 font-medium flex items-center gap-1">
+                      <InlineMath math={String.raw`H`} /> (Hop interval stride):
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <InlineMath math={String.raw`H = ${H}`} className="text-slate-800 font-bold" />
+                      <span className="text-slate-500 text-[11px]">samples</span>
+                    </span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-slate-500 font-medium flex items-center gap-1">
+                      <InlineMath math={String.raw`f_s`} /> (Sampling rate):
+                    </span>
+                    <InlineMath math={String.raw`f_s = ${fs}\,\text{Hz}`} className="text-slate-800 font-bold" />
                   </div>
                 </div>
               </div>
@@ -320,31 +335,31 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                 <div className="space-y-1.5 text-xs">
                   <div className="flex justify-between border-b border-slate-100 pb-1">
                     <span className="text-slate-500 font-medium flex items-center gap-1">
-                      <InlineMath math="s_m = m \\cdot H" />
+                      <InlineMath math={String.raw`s_m = m \cdot H`} />
                       <span className="text-slate-400 text-[10px]">(Starting index):</span>
                     </span>
-                    <InlineMath math={`s_{${selectedFrameM}} = ${startIdx}`} className="font-mono text-slate-800" />
+                    <InlineMath math={String.raw`s_{${selectedFrameM}} = ${startIdx}`} className="font-mono text-slate-800" />
                   </div>
                   <div className="flex justify-between border-b border-slate-100 pb-1">
                     <span className="text-slate-500 font-medium flex items-center gap-1">
-                      <InlineMath math="g = m \\cdot H + \\ell" />
+                      <InlineMath math={String.raw`g = m \cdot H + \ell`} />
                       <span className="text-slate-400 text-[10px]">(Global index):</span>
                     </span>
-                    <InlineMath math={`g = ${selectedGlobalIndex}`} className="font-mono text-slate-800" />
+                    <InlineMath math={String.raw`g = ${selectedGlobalIndex}`} className="font-mono text-slate-800" />
                   </div>
                   <div className="flex justify-between border-b border-slate-100 pb-1">
                     <span className="text-slate-500 font-medium flex items-center gap-1">
-                      <InlineMath math="x^{(m)}[\\ell] = x[g]" />
+                      <InlineMath math={String.raw`x^{(m)}[\ell] = x[g]`} />
                       <span className="text-slate-400 text-[10px]">(Sample value):</span>
                     </span>
-                    <InlineMath math={`x^{(${selectedFrameM})}[${selectedEll}] = ${selectedSampleValue.toFixed(4)}`} className="font-mono text-slate-800" />
+                    <InlineMath math={String.raw`x^{(${selectedFrameM})}[${selectedEll}] = ${selectedSampleValue.toFixed(4)}`} className="font-mono text-slate-800" />
                   </div>
                   <div className="flex justify-between">
                     <span className="text-slate-500 font-medium flex items-center gap-1">
-                      <InlineMath math="t_g = g / f_s" />
+                      <InlineMath math={String.raw`t_g = \frac{g}{f_s}`} />
                       <span className="text-slate-400 text-[10px]">(Physical time):</span>
                     </span>
-                    <InlineMath math={`t_{${selectedGlobalIndex}} = ${selectedSampleTime.toFixed(4)}\\text{ s}`} className="font-mono text-slate-850 font-bold" />
+                    <InlineMath math={String.raw`t_{${selectedGlobalIndex}} = ${selectedSampleTime.toFixed(4)}\text{ s}`} className="font-mono text-slate-850 font-bold" />
                   </div>
                 </div>
               </div>
@@ -355,7 +370,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
           <div className="pt-6 space-y-3">
             <h4 className="text-xs font-bold text-slate-900 uppercase tracking-wide flex items-center gap-1.5 font-sans">
               <span className="flex items-center justify-center w-5 h-5 rounded-full bg-slate-100 text-[11px] text-slate-700 font-bold">8</span>
-              <span>Pointwise Index Mapping for Frame <InlineMath math={`m = ${selectedFrameM}`} /></span>
+              <span>Pointwise Index Mapping for Frame <InlineMath math={String.raw`m = ${selectedFrameM}`} /></span>
             </h4>
             <div className="text-xs text-slate-650 space-y-3 font-sans leading-relaxed">
               <p>
@@ -382,7 +397,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                                 : 'bg-white text-slate-400 border-slate-100'
                             }`}
                           >
-                            <InlineMath math={`x[${idx}]`} />
+                            <InlineMath math={String.raw`x[${idx}]`} />
                           </div>
                         );
                       })}
@@ -412,7 +427,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                                 : 'bg-blue-50 text-blue-800 border-blue-200'
                             }`}
                           >
-                            <InlineMath math={`x^{(${selectedFrameM})}[${ell}]`} />
+                            <InlineMath math={String.raw`x^{(${selectedFrameM})}[${ell}]`} />
                           </div>
                         );
                       })}
@@ -439,12 +454,12 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                           }`}
                         >
                           <div className="flex items-center gap-1.5 flex-wrap justify-center">
-                            <span className="inline-flex items-center font-semibold"><InlineMath math={`\\ell = ${ell}`} /></span>
+                            <span className="inline-flex items-center font-semibold"><InlineMath math={String.raw`\ell = ${ell}`} /></span>
                             <span className="text-slate-400 text-[10px]">&rarr;</span>
-                            <span className="inline-flex items-center font-semibold"><InlineMath math={`g = ${globIdx}`} /></span>
+                            <span className="inline-flex items-center font-semibold"><InlineMath math={String.raw`g = ${globIdx}`} /></span>
                           </div>
                           <span className="text-[9.5px] text-slate-400 font-serif mt-0.5">
-                            <InlineMath math={`x^{(${selectedFrameM})}[${ell}] = x[${globIdx}]`} />
+                            <InlineMath math={String.raw`x^{(${selectedFrameM})}[${ell}] = x[${globIdx}]`} />
                           </span>
                         </div>
                       );
@@ -471,7 +486,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                 >
                   <span className="flex items-center gap-2">
                     <HelpCircle size={14} className="text-blue-500" />
-                    <span>Question A: Does <InlineMath math="m" /> select a sample or an interval?</span>
+                    <span>Question A: Does <InlineMath math={String.raw`m`} /> select a sample or an interval?</span>
                   </span>
                   {activeCheck === 'a' ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
@@ -482,7 +497,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                       <span>Answer:</span>
                     </div>
                     <p>
-                      The frame translation index <InlineMath math="m" /> selects an entire <strong>interval</strong> <InlineMath math="I_m = \{s_m, \dots, s_m + L - 1\}" />, not an isolated sample value. The interval shifts across the timeline to allow local analysis of overlapping or consecutive segments of size <InlineMath math="L" />.
+                      The frame translation index <InlineMath math={String.raw`m`} /> selects an entire <strong>interval</strong> <InlineMath math={String.raw`I_m = \{s_m, \dots, s_m + L - 1\}`} />, not an isolated sample value. The interval shifts across the timeline to allow local analysis of overlapping or consecutive segments of size <InlineMath math={String.raw`L`} />.
                     </p>
                   </div>
                 )}
@@ -496,7 +511,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                 >
                   <span className="flex items-center gap-2">
                     <HelpCircle size={14} className="text-blue-500" />
-                    <span>Question B: What is the differences between <InlineMath math="g" /> and <InlineMath math="\\ell" />?</span>
+                    <span>Question B: What is the differences between <InlineMath math={String.raw`g`} /> and <InlineMath math={`\\ell`} />?</span>
                   </span>
                   {activeCheck === 'b' ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
@@ -507,10 +522,10 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                       <span>Answer:</span>
                     </div>
                     <p>
-                      <InlineMath math="g" /> is the <strong>global absolute index</strong> of the discrete signal sequence, spanning the entire sequence length from <InlineMath math="0" /> to <InlineMath math="N-1" />.
+                      <InlineMath math={String.raw`g`} /> is the <strong>global absolute index</strong> of the discrete signal sequence, spanning the entire sequence length from <InlineMath math={String.raw`0`} /> to <InlineMath math={String.raw`N-1`} />.
                     </p>
                     <p className="mt-1">
-                      <InlineMath math="\\ell" /> is the <strong>local relative index</strong> inside the localized frame, ranging from <InlineMath math="0" /> to <InlineMath math="L-1" />. Under consecutive frames, local coordinate offsets translate by offsets using the affine mapping equation: <InlineMath math="g = m \\cdot H + \\ell" />.
+                      <InlineMath math={String.raw`\ell`} /> is the <strong>local relative index</strong> inside the localized frame, ranging from <InlineMath math={String.raw`0`} /> to <InlineMath math={String.raw`L-1`} />. Under consecutive frames, local coordinate offsets translate by offsets using the affine mapping equation: <InlineMath math={String.raw`g = m \cdot H + \ell`} />.
                     </p>
                   </div>
                 )}
@@ -524,7 +539,7 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                 >
                   <span className="flex items-center gap-2">
                     <HelpCircle size={14} className="text-blue-500" />
-                    <span>Question C: Why do we need <InlineMath math="f_s" />?</span>
+                    <span>Question C: Why do we need <InlineMath math={String.raw`f_s`} />?</span>
                   </span>
                   {activeCheck === 'c' ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
@@ -535,9 +550,9 @@ export const MathWalkthrough: React.FC<MathWalkthroughProps> = ({ labState }) =>
                       <span>Answer:</span>
                     </div>
                     <p>
-                      The sampling rate <InlineMath math="f_s" /> represents the number of samples captured per second of physical time. We need it to convert discrete indexes (<InlineMath math="g" />) into their appropriate real-world continuous physical standard timescale (seconds) under the linear equation:
+                      The sampling rate <InlineMath math={String.raw`f_s`} /> represents the number of samples captured per second of physical time. We need it to convert discrete indexes (<InlineMath math={String.raw`g`} />) into their appropriate real-world continuous physical standard timescale (seconds) under the linear equation:
                     </p>
-                    <MathBlock math="t_g = \frac{g}{f_s}" />
+                    <MathBlock math={String.raw`t_g = \frac{g}{f_s}`} />
                   </div>
                 )}
               </div>

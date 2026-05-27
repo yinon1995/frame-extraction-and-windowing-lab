@@ -14,7 +14,7 @@ interface MathValidationCenterProps {
 }
 
 export const MathValidationCenter: React.FC<MathValidationCenterProps> = ({ issues }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
 
   // Deduplicate issues by unique id
   const uniqueIssues: MathValidationIssue[] = [];
@@ -51,7 +51,7 @@ export const MathValidationCenter: React.FC<MathValidationCenterProps> = ({ issu
         <div className="flex items-center gap-2">
           <ShieldAlert className="w-4 h-4 text-slate-700" />
           <h3 className="text-xs font-bold text-slate-700 uppercase tracking-widest font-sans">
-            Mathematical Guardrails ({uniqueIssues.length})
+            Mathematical Guardrails
           </h3>
         </div>
         <button
